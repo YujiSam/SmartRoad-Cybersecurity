@@ -41,6 +41,32 @@ SAÍDA: árvore de pastas, código, testes, README com a Ficha e cenários de de
 CRITÉRIO DE ACEITE: pytest verde; nenhum CPF cru em db/logs; 4+ cenários bloqueado/permitido.
 ```
 
+### 1.3 Reformulações dos demais pedidos (retrospectiva, não são os originais)
+
+**Pedido #1 (planejamento da entrega):**
+```
+PAPEL: tutor(a) técnico(a) de Engenharia de Software.
+CONTEXTO: briefing GS FIAP 2026.2 anexo (slides 28-29, Cybersecurity, 10 pts).
+TAREFA: extrair as 3 missões, entregas e rubrica; montar plano de execução até 19/11, 23h55.
+SAÍDA: tabela de critérios x pontos, passo a passo e checklist de conclusão verificável.
+```
+
+**Pedido #2 (arquitetura e CPF como login):**
+```
+CONTEXTO: não há projeto-base. Preciso de um protótipo com login por CPF para demonstrar PII e taint.
+TAREFA: propor árvore de pastas e política de armazenamento (CPF, senha, dado de saúde).
+RESTRIÇÕES: CPF nunca em claro; justificar cada escolha criptográfica; stack Python.
+SAÍDA: árvore comentada, tabela dado x técnica x motivo, diagrama de fluxo em texto.
+```
+
+**Pedido #3 (alinhamento ao tema do grupo):**
+```
+CONTEXTO: temas do grupo: rotas urbanas acessíveis + zeladoria colaborativa; stack FastAPI + Streamlit.
+TAREFA: sugerir como o tema alimenta a entrega de Cybersecurity (dados sensíveis reais do domínio)
+  e uma estratégia de LLM sem dependência de provedor.
+SAÍDA: conceito em 1 frase, mapa dado do app x tipo de PII, e riscos de cada decisão.
+```
+
 ## 2. Problemas encontrados e corrigidos (com testes)
 
 | Problema | Causa | Correção |
