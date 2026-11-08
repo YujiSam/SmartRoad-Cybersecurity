@@ -14,6 +14,33 @@
 | 5 | Pedimos o projeto no GitHub com commits organizados, informamos integrantes/RMs, cidade e bairro (São Paulo, Paulista) e o e-mail do commit. | Histórico git em commits por etapa, README com a Ficha da CitizenTech e roteiro de prints (`evidencias/ROTEIRO_PRINTS.md`). | Troca do e-mail dos commits; definição do bairro. |
 | 6 | Pedimos o registro de prompts neste arquivo. | Este documento. | |
 
+### 1.1 Decisões e direção que vieram do grupo (autor: Gustavo)
+
+A IA gerou código, mas estas escolhas de produto e de engenharia foram do grupo:
+
+- **Tema:** combinar *rotas urbanas acessíveis* com *zeladoria colaborativa*, justificando que os temas se completam (o relato alimenta a nota do trecho).
+- **Requisito de login por CPF:** foi pedido pelo grupo e é o que cria o desafio real de segurança do projeto (CPF como identificador sem guardá-lo em claro).
+- **Stack:** FastAPI + SQLite + Streamlit.
+- **Nome e localização:** SmartRoad, São Paulo – Paulista.
+- **Qualidade do repositório:** exigiu histórico git organizado por etapa e a Ficha da CitizenTech no README.
+- **Transparência:** pediu o registro de uso de IA neste arquivo.
+
+### 1.2 Reformulação posterior do prompt principal (retrospectiva)
+
+> **Atenção:** o texto abaixo **não** é o prompt original enviado. É como o grupo formularia o pedido #4 hoje, aplicando boas práticas de engenharia de prompt. O original está na tabela acima.
+
+```
+PAPEL: engenheiro(a) de segurança de aplicações Python.
+CONTEXTO: GS FIAP 2026.2, disciplina Cybersecurity. Solução SmartRoad (rotas acessíveis +
+  zeladoria). Entrega: motor de parsing de PII, Taint Analysis, tradução de alertas via LLM,
+  dashboard de Risco Cidadão. Dados apenas simulados (LGPD).
+TAREFA: gerar o esqueleto FastAPI + SQLite + Streamlit com login por CPF.
+RESTRIÇÕES: CPF nunca em claro (banco, log, resposta, LLM); LLM só recebe metadados; fallback
+  sem internet; cada módulo com testes pytest; sem dependências além de requirements.txt.
+SAÍDA: árvore de pastas, código, testes, README com a Ficha e cenários de demonstração.
+CRITÉRIO DE ACEITE: pytest verde; nenhum CPF cru em db/logs; 4+ cenários bloqueado/permitido.
+```
+
 ## 2. Problemas encontrados e corrigidos (com testes)
 
 | Problema | Causa | Correção |
