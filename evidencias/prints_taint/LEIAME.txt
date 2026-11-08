@@ -1,0 +1,1 @@
+Coloque aqui os prints dos 5 cenários (rode scripts/cenarios_demo.py e tire print do terminal).
