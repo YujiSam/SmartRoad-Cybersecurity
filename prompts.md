@@ -25,47 +25,70 @@ A IA gerou código, mas estas escolhas de produto e de engenharia foram do grupo
 - **Qualidade do repositório:** exigiu histórico git organizado por etapa e a Ficha da CitizenTech no README.
 - **Transparência:** pediu o registro de uso de IA neste arquivo.
 
-### 1.2 Reformulação posterior do prompt principal (retrospectiva)
+### 1.2 Reformulação profissional dos prompts (retrospectiva)
 
-> **Atenção:** o texto abaixo **não** é o prompt original enviado. É como o grupo formularia o pedido #4 hoje, aplicando boas práticas de engenharia de prompt. O original está na tabela acima.
+> **Atenção:** os textos abaixo **não** são os prompts originais enviados (os originais estão na tabela da seção 1). São a reformulação estruturada feita depois pelo grupo, com revisão crítica. Restrições como HMAC, Argon2id e fallback surgiram nas respostas da IA e aparecem aqui como **requisitos de especificação**, isto é, como o grupo formularia o pedido hoje.
 
+**Prompt 1: Planejamento, escopo e execução**
 ```
-PAPEL: engenheiro(a) de segurança de aplicações Python.
-CONTEXTO: GS FIAP 2026.2, disciplina Cybersecurity. Solução SmartRoad (rotas acessíveis +
-  zeladoria). Entrega: motor de parsing de PII, Taint Analysis, tradução de alertas via LLM,
-  dashboard de Risco Cidadão. Dados apenas simulados (LGPD).
-TAREFA: gerar o esqueleto FastAPI + SQLite + Streamlit com login por CPF.
-RESTRIÇÕES: CPF nunca em claro (banco, log, resposta, LLM); LLM só recebe metadados; fallback
-  sem internet; cada módulo com testes pytest; sem dependências além de requirements.txt.
-SAÍDA: árvore de pastas, código, testes, README com a Ficha e cenários de demonstração.
-CRITÉRIO DE ACEITE: pytest verde; nenhum CPF cru em db/logs; 4+ cenários bloqueado/permitido.
-```
-
-### 1.3 Reformulações dos demais pedidos (retrospectiva, não são os originais)
-
-**Pedido #1 (planejamento da entrega):**
-```
-PAPEL: tutor(a) técnico(a) de Engenharia de Software.
-CONTEXTO: briefing GS FIAP 2026.2 anexo (slides 28-29, Cybersecurity, 10 pts).
-TAREFA: extrair as 3 missões, entregas e rubrica; montar plano de execução até 19/11, 23h55.
-SAÍDA: tabela de critérios x pontos, passo a passo e checklist de conclusão verificável.
+PAPEL: mentor(a) técnico(a) em Cybersecurity.
+CONTEXTO: Global Solution FIAP 2026.2, disciplina Cybersecurity (rubrica de 10 pontos),
+  briefing anexo (slides 28-29). Solução SmartRoad. Prazo: 19/11, 23h55, via Teams.
+TAREFA: extrair as missões obrigatórias, as entregas e os critérios da rubrica, e montar
+  um plano de execução por marcos até o prazo.
+SAÍDA: (1) tabela requisito x critério x pontos; (2) cronograma passo a passo;
+  (3) checklist de prontidão pré-envio.
+CRITÉRIO DE ACEITE: cada item da rubrica tem uma evidência prevista e um responsável.
 ```
 
-**Pedido #2 (arquitetura e CPF como login):**
+**Prompt 2: Arquitetura, identidade e armazenamento seguro**
 ```
-CONTEXTO: não há projeto-base. Preciso de um protótipo com login por CPF para demonstrar PII e taint.
-TAREFA: propor árvore de pastas e política de armazenamento (CPF, senha, dado de saúde).
-RESTRIÇÕES: CPF nunca em claro; justificar cada escolha criptográfica; stack Python.
-SAÍDA: árvore comentada, tabela dado x técnica x motivo, diagrama de fluxo em texto.
+PAPEL: especialista em segurança de aplicações e backend.
+CONTEXTO: MVP acadêmico (SmartRoad) em que o CPF é o identificador de login.
+  Não há projeto-base fornecido pelo professor. Dados 100% simulados.
+TAREFA: projetar a arquitetura base e a estratégia de armazenamento de dados sensíveis (PII).
+RESTRIÇÕES: CPF nunca em texto plano (banco, log, resposta); busca por HMAC com pepper
+  (determinístico, para permitir o login); senha com Argon2id; dado de saúde cifrado;
+  stack Python + FastAPI + SQLite + Streamlit.
+SAÍDA: (1) árvore de diretórios comentada; (2) matriz dado x técnica x justificativa;
+  (3) diagrama textual do ciclo de vida do dado sensível, da entrada à persistência.
+CRITÉRIO DE ACEITE: nenhuma coluna ou log contém CPF em claro.
 ```
 
-**Pedido #3 (alinhamento ao tema do grupo):**
+**Prompt 3: Alinhamento de domínio e IA com fallback**
 ```
-CONTEXTO: temas do grupo: rotas urbanas acessíveis + zeladoria colaborativa; stack FastAPI + Streamlit.
-TAREFA: sugerir como o tema alimenta a entrega de Cybersecurity (dados sensíveis reais do domínio)
-  e uma estratégia de LLM sem dependência de provedor.
-SAÍDA: conceito em 1 frase, mapa dado do app x tipo de PII, e riscos de cada decisão.
+PAPEL: engenheiro(a) de software especializado(a) em aplicações com LLM e LGPD.
+CONTEXTO: SmartRoad une rotas urbanas acessíveis e zeladoria colaborativa (relatos de
+  problemas por trecho). O texto livre dos relatos pode conter PII (CPF, telefone, saúde).
+TAREFA: propor como o domínio se integra ao pipeline de segurança e uma arquitetura de
+  LLM desacoplada e segura.
+RESTRIÇÕES: a LLM só recebe metadados sanitizados; fallback determinístico quando o
+  provedor estiver fora do ar ou sem chave.
+SAÍDA: (1) proposta de valor em uma frase; (2) mapa entrada do app x tipo de PII;
+  (3) riscos e mitigações da adoção de IA.
+CRITÉRIO DE ACEITE: o sistema funciona completo com a IA desligada.
 ```
+
+**Prompt 4: Implementação do framework de segurança**
+```
+PAPEL: desenvolvedor(a) Python sênior com foco em código limpo e segurança.
+CONTEXTO: esqueleto técnico do SmartRoad (FastAPI + SQLite + Streamlit) cobrindo motor de
+  PII, Taint Analysis, tradução de alertas e painel de Risco Cidadão.
+TAREFA: gerar a implementação modular e testável conforme as decisões dos prompts 2 e 3.
+RESTRIÇÕES: testes com pytest; Taint Analysis com source, propagação, sanitizer e sink,
+  bloqueando saídas não autorizadas; apenas dependências listadas em requirements.txt.
+SAÍDA: (1) estrutura de arquivos e código completo; (2) testes de sucesso e de bloqueio;
+  (3) README com a Ficha da CitizenTech e roteiro de demonstração dos cenários.
+CRITÉRIO DE ACEITE: pytest verde; nenhum CPF cru no banco e nos logs; ao menos 4 cenários
+  demonstrados (bloqueado e permitido).
+```
+
+**Revisão crítica do grupo sobre a primeira versão desses prompts**
+- Removido "relatos geolocalizados": o protótipo usa um grafo simulado de trechos.
+- Removido "TDD": os testes foram escritos após o código-base.
+- Removida a menção a peso na nota final: o briefing só informa a rubrica de 10 pontos.
+- "HMAC com salt/pepper" corrigido para **pepper**: um salt por usuário impediria buscar o usuário pelo CPF no login.
+- Reduzido o excesso de títulos nos papéis e acrescentado um **critério de aceite** em cada prompt, que é o que torna o pedido verificável.
 
 ## 2. Problemas encontrados e corrigidos (com testes)
 
