@@ -5,7 +5,7 @@
 | Campo | Preencher |
 |---|---|
 | Nome da CitizenTech | **SmartRoad** |
-| Cidade e bairro | _(preencher: ex. São Paulo – Paulista)_ |
+| Cidade e bairro | São Paulo – Paulista |
 | Cidadão beneficiado | Pessoas com deficiência, idosos e quem anda com carrinho de bebê |
 | Problema, em uma frase | "Não sei se o caminho até meu destino é seguro e acessível, e os problemas da calçada não chegam a quem pode resolver." |
 | Como funciona | Moradores reportam buracos, calçadas quebradas, iluminação e segurança. Os relatos reduzem a nota dos trechos, e a rota sugerida evita os piores. |
