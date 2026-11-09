@@ -2,7 +2,7 @@
 
 ## Antes (log técnico de auditoria)
 ```json
-{'ts': '2026-11-08T00:20:42+00:00', 'origem': 'GET /demo/vaza-cpf-no-log', 'destino': 'log', 'tipos': ['CPF'], 'bloqueado': True, 'detalhe': 'saída com PII bloqueada'}
+{'ts': '2026-11-09T23:26:30+00:00', 'origem': 'GET /demo/vaza-cpf-no-log', 'destino': 'log', 'tipos': ['CPF'], 'bloqueado': True, 'detalhe': 'saída com PII bloqueada'}
 ```
 
 ## Depois (alerta ao cidadão, fonte: fallback)
