@@ -4,7 +4,7 @@ Preparação: `pip install -r requirements.txt`, terminal em tela cheia, fonte g
 
 ## PRINT 1: testes passando
 Comando: `pytest testes -q`
-Tire o print quando aparecer `34 passed`.
+Tire o print quando aparecer `35 passed`.
 Salvar: `evidencias/prints_taint/01_testes.png`
 
 ## PRINT 2: cenários de Taint Analysis

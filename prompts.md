@@ -94,10 +94,10 @@ CRITÉRIO DE ACEITE: pytest verde; nenhum CPF cru no banco e nos logs; ao menos 
 
 | Problema | Causa | Correção |
 |---|---|---|
-| Teste de propagação do taint falhou com f-string | f-strings do Python devolvem `str` comum e **perdem o rótulo** do `Tainted` | Documentado como limitação; os sinks rodam o detector de PII também (defesa em profundidade) e há um teste que prova isso |
+| Teste de propagação do taint falhou com f-string | ao juntar as partes, a f-string monta (em tempo de execução) uma `str` comum e **perde o rótulo** do `Tainted` | Documentado como limitação; os sinks rodam o detector de PII também (defesa em profundidade) e há um teste que prova isso |
 | `"texto %s" % cpf` perdia o rótulo | O `%` era resolvido pela `str` da esquerda | Implementado `__rmod__` em `Tainted` |
 
-Resultado final: 34 testes passando e 0 ocorrências de CPF em texto puro no banco e nos logs.
+Resultado final: 35 testes passando e 0 ocorrências de CPF em texto puro no banco e nos logs.
 
 ## 3. Prompt usado em produção (tradução do alerta)
 
@@ -136,7 +136,7 @@ Arquivo `ia/prompts.py`. A LLM recebe **somente** `{falha, tipos, onde, gravidad
 | `ia/tradutor.py` | Monta metadados, passa por `sink_llm`, chama o Gemini e, se algo falhar, usa o fallback. |
 | `dashboard/painel.py` | Streamlit com o indicador, os bloqueios, o gráfico por tipo, o último alerta traduzido e a trilha de auditoria. |
 | `scripts/cenarios_demo.py` | Roda os 5 cenários e gera `evidencias/`. |
-| `testes/` | 34 testes: CPF, detector (positivos, negativos e falsos positivos), taint, risco e fluxo completo da API. |
+| `testes/` | 35 testes: CPF, detector (positivos, negativos e falsos positivos), taint, risco e fluxo completo da API. |
 
 ## 5. Revisão do grupo (preencher após ler o código)
 

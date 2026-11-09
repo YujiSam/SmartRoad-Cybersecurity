@@ -44,7 +44,7 @@ python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\
 pip install -r requirements.txt
 cp .env.example .env                                   # opcional; funciona sem editar
 
-pytest testes -q                                       # 34 testes
+pytest testes -q                                       # 35 testes
 python scripts/cenarios_demo.py                        # roda os 5 cenários e gera evidências
 uvicorn app.main:app --reload                          # API em http://127.0.0.1:8000/docs
 streamlit run dashboard/painel.py                      # dashboard em http://localhost:8501
@@ -76,9 +76,22 @@ SINK: sink_log · sink_resposta · sink_arquivo · sink_llm
 Última linha de defesa: TaintMiddleware inspeciona toda resposta JSON da API.
 ```
 
-**Limitação conhecida:** f-strings do Python devolvem `str` comum e perdem a tag. Por isso todo sink
-também roda o detector de PII (defesa em profundidade). Isso está coberto em
+**Limitação conhecida:** ao juntar as partes de uma f-string, o Python monta o resultado, em tempo de
+execução, como uma `str` comum, e o rótulo do `Tainted` se perde (`+`, `%` e `.format` preservam; f-string não).
+Por isso todo sink também roda o detector de PII (defesa em profundidade). Coberto em
 `testes/test_taint.py::test_limitacao_fstring...`.
+
+## Decisões técnicas e limitações conhecidas
+
+| Tema | Como está no projeto | Limitação / como endurecer |
+|---|---|---|
+| Pepper do CPF | Lido de `PEPPER_CPF` (variável de ambiente / `.env`). Sem ela, usa um pepper **público** de desenvolvimento e **emite aviso**. | Em produção, definir `PEPPER_CPF` e guardá-lo fora do banco (cofre de segredos). |
+| Chave de cifragem (saúde) | `CHAVE_FERNET` no `.env`. Sem ela, usa chave temporária e emite aviso. | Sem a chave fixa, o perfil cifrado não pode ser lido após reiniciar. |
+| Resiliência da IA | IA **desligada por padrão** (`USAR_LLM=false`); timeout de 10 s e texto fixo de fallback. O sistema todo funciona sem internet. | Não é "offline-first" completo: só a tradução de alertas tem fallback. |
+| Sessões | Token em memória (`dict`). | Somem ao reiniciar; em produção usar JWT ou Redis. |
+| Força bruta no login | Não há limite de tentativas. | Adicionar rate limit (ex.: `slowapi`) e bloqueio progressivo. |
+| Rotas `/demo/*` | Expostas, só para a demonstração. | Desligar em produção. |
+| Detecção por regex | Pode ter falso negativo (ex.: CPF escrito por extenso) e falso positivo (palavra "senha" em contexto raro). | Mitigado pelo dígito verificador do CPF e por testes de borda. |
 
 ## Cenários de demonstração (rotas `/demo/*`, só para a demo)
 
@@ -99,7 +112,7 @@ cybersecurity/
 ├── ia/             # tradutor LLM + fallback
 ├── dashboard/      # Streamlit
 ├── dados/          # dados simulados
-├── testes/         # 34 testes (pytest)
+├── testes/         # 35 testes (pytest)
 ├── scripts/        # cenarios_demo.py
 └── evidencias/     # log de auditoria, antes/depois da IA, prints e vídeo
 ```
