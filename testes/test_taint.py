@@ -47,3 +47,18 @@ def test_llm_so_recebe_metadados():
     sink_llm({"tipos": "CPF", "onde": "log", "gravidade": "Médio"})
     with pytest.raises(VazamentoBloqueado):
         sink_llm({"texto": f"o cpf é {CPF}"})
+
+
+def test_hash_cpf_avisa_quando_usa_pepper_de_desenvolvimento(monkeypatch, caplog):
+    import logging
+
+    from modulo_pii import sanitizers
+
+    monkeypatch.delenv("PEPPER_CPF", raising=False)
+    monkeypatch.setattr(sanitizers, "_avisado", False)
+    with caplog.at_level(logging.WARNING, logger="smartroad"):
+        h1 = sanitizers.hash_cpf(CPF)
+    assert "PEPPER_CPF" in caplog.text
+    monkeypatch.setenv("PEPPER_CPF", "outro-pepper")
+    assert sanitizers.hash_cpf(CPF) != h1  # o pepper muda o hash
+    assert sanitizers.hash_cpf(CPF) == sanitizers.hash_cpf("52998224725")  # determinístico, ignora pontuação

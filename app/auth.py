@@ -1,4 +1,5 @@
 """Autenticação por CPF. O CPF nunca é guardado em claro nem escrito em log."""
+import logging
 import os
 import secrets
 
@@ -11,17 +12,20 @@ from modulo_pii.validadores import so_digitos
 
 _ph = PasswordHasher()
 _SESSOES: dict[str, int] = {}  # token -> cidadao_id (protótipo; em produção, JWT/Redis)
+_chave_dev = None
 
 
 def _fernet() -> Fernet:
     chave = os.getenv("CHAVE_FERNET")
     if not chave:
-        # chave efêmera de desenvolvimento (dados cifrados não sobrevivem a reinício)
+        # chave efêmera de desenvolvimento: dados cifrados NÃO sobrevivem a um reinício
         global _chave_dev
-        try:
-            _chave_dev
-        except NameError:
+        if _chave_dev is None:
             _chave_dev = Fernet.generate_key()
+            logging.getLogger("smartroad").warning(
+                "CHAVE_FERNET não definida: usando chave temporária. "
+                "Defina CHAVE_FERNET no .env para conseguir decifrar o perfil de mobilidade após reiniciar."
+            )
         chave = _chave_dev.decode()
     return Fernet(chave.encode())
 

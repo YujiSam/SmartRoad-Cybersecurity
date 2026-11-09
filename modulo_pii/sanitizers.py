@@ -1,6 +1,7 @@
 """Sanitizers: transformam dado sensível em algo seguro de sair do sistema."""
 import hashlib
 import hmac
+import logging
 import os
 
 from .detector import detectar_pii
@@ -40,5 +41,23 @@ def sanitizar_texto(texto: str) -> tuple[str, list]:
 
 def hash_cpf(cpf: str) -> str:
     """HMAC-SHA256 com 'pepper' do ambiente: permite buscar usuário sem guardar o CPF em claro."""
-    pepper = os.getenv("PEPPER_CPF", "dev-pepper-troque-em-producao").encode()
-    return hmac.new(pepper, so_digitos(cpf).encode(), hashlib.sha256).hexdigest()
+    pepper = os.getenv("PEPPER_CPF")
+    if not pepper:
+        _avisar_pepper_padrao()
+        pepper = PEPPER_DEV
+    return hmac.new(pepper.encode(), so_digitos(cpf).encode(), hashlib.sha256).hexdigest()
+
+
+PEPPER_DEV = "dev-pepper-troque-em-producao"
+_avisado = False
+
+
+def _avisar_pepper_padrao() -> None:
+    """Sem PEPPER_CPF no ambiente o hash usa um pepper PÚBLICO (só serve para desenvolvimento)."""
+    global _avisado
+    if not _avisado:
+        _avisado = True
+        logging.getLogger("smartroad").warning(
+            "PEPPER_CPF não definido: usando pepper de desenvolvimento (público). "
+            "Defina PEPPER_CPF no .env para proteger os hashes de CPF."
+        )
