@@ -10,7 +10,7 @@
 | Problema, em uma frase | "Não sei se o caminho até meu destino é seguro e acessível, e os problemas da calçada não chegam a quem pode resolver." |
 | Como funciona | Moradores reportam buracos, calçadas quebradas, iluminação e segurança. Os relatos reduzem a nota dos trechos, e a rota sugerida evita os piores. |
 | O que cada parte faz | Esta entrega protege os dados pessoais (CPF, senha, perfil de mobilidade) em toda a solução: detecta PII, rastreia o dado (taint), bloqueia vazamentos, traduz alertas via IA e mostra o Risco Cidadão. |
-| Link do repositório | _(preencher)_ |
+| Link do repositório | _https://github.com/YujiSam/SmartRoad-Cybersecurity.git_ |
 | Indicador de impacto | Relatos resolvidos · Risco Cidadão (0–100) · vazamentos bloqueados |
 | ODS conectados | **10** (reduzir desigualdades), **11** (cidades sustentáveis), **3** (saúde e bem-estar) |
 
