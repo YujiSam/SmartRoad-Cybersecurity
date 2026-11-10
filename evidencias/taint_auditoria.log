@@ -1,21 +1,20 @@
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "GET /demo/vaza-cpf-no-log", "destino": "log", "tipos": ["CPF"], "bloqueado": true, "detalhe": "saída com PII bloqueada"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "GET /demo/vaza-cpf-no-log", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "GET /demo/cpf-mascarado-no-log", "destino": "log", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "GET /demo/cpf-mascarado-no-log", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "GET /demo/vaza-senha-na-resposta", "destino": "api", "tipos": ["SENHA"], "bloqueado": true, "detalhe": "saída com PII bloqueada"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "GET /demo/vaza-senha-na-resposta", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "GET /demo/vaza-sem-sink", "destino": "api", "tipos": ["CPF"], "bloqueado": true, "detalhe": "middleware bloqueou resposta com PII"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /cadastro", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /cadastro", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /login", "destino": "log", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /login", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /login", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /login", "destino": "log", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /login", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /relatos", "destino": "banco", "tipos": ["CPF", "SAUDE"], "bloqueado": true, "detalhe": "texto cru bloqueado; versão mascarada publicada"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /relatos", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /relatos", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /relatos", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "POST /relatos", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "GET /rota", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
-{"ts": "2026-11-09T23:26:30+00:00", "origem": "GET /rota", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "GET /demo/vaza-cpf-no-log", "destino": "log", "tipos": ["CPF"], "bloqueado": true, "detalhe": "saída com PII bloqueada"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "GET /demo/vaza-cpf-no-log", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "GET /demo/cpf-mascarado-no-log", "destino": "log", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "GET /demo/cpf-mascarado-no-log", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "GET /demo/vaza-senha-na-resposta", "destino": "api", "tipos": ["SENHA"], "bloqueado": true, "detalhe": "saída com PII bloqueada"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "GET /demo/vaza-senha-na-resposta", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "GET /demo/vaza-sem-sink", "destino": "api", "tipos": ["CPF"], "bloqueado": true, "detalhe": "middleware bloqueou resposta com PII"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /cadastro", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /login", "destino": "log", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /login", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /login", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /login", "destino": "log", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /login", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /relatos", "destino": "banco", "tipos": ["CPF", "SAUDE"], "bloqueado": true, "detalhe": "texto cru bloqueado; versão mascarada publicada"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /relatos", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /relatos", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /relatos", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "POST /relatos", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "GET /rota", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "saída limpa permitida"}
+{"ts": "2026-11-09T23:54:17+00:00", "origem": "GET /rota", "destino": "api", "tipos": [], "bloqueado": false, "detalhe": "resposta limpa"}
