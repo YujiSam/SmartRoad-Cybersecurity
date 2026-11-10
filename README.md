@@ -125,3 +125,8 @@ cybersecurity/
 | Eficácia do Taint Analysis | 3,0 | `testes/test_taint.py`, `evidencias/taint_auditoria.log`, `prints_taint/` |
 | Inovação com IA na remediação | 2,0 | `evidencias/antes_depois_ia.md`, `ia/` |
 | Dashboard Executivo (Risco Cidadão) | 2,0 | `evidencias/dashboard_print.png` e vídeo |
+
+> **Nota:** nas rotas `/demo/*`, o erro **HTTP 500 é o resultado esperado**. Elas tentam vazar um dado
+> pessoal de propósito, e o sistema responde com 500 justamente porque **bloqueou o vazamento**
+> (o evento fica registrado na auditoria e aparece no dashboard). Resposta 200 só no cenário 2,
+> em que o CPF já vai mascarado.
