@@ -137,16 +137,3 @@ Arquivo `ia/prompts.py`. A LLM recebe **somente** `{falha, tipos, onde, gravidad
 | `dashboard/painel.py` | Streamlit com o indicador, os bloqueios, o gráfico por tipo, o último alerta traduzido e a trilha de auditoria. |
 | `scripts/cenarios_demo.py` | Roda os 5 cenários e gera `evidencias/`. |
 | `testes/` | 35 testes: CPF, detector (positivos, negativos e falsos positivos), taint, risco e fluxo completo da API. |
-
-## 5. Revisão do grupo (preencher após ler o código)
-
-Marquem só o que cada um realmente fez:
-
-- [ ] Todos leram `modulo_pii/` e sabem explicar source → propagação → sanitizer → sink
-- [ ] Rodamos `pytest testes -q` na nossa máquina e passou
-- [ ] Rodamos `python scripts/cenarios_demo.py` e entendemos cada cenário
-- [ ] Sabemos explicar por que o CPF é guardado como HMAC e a senha como argon2
-- [ ] Sabemos explicar a limitação das f-strings e por que os sinks também rodam o detector
-- [ ] Alteramos/adaptamos algo por conta própria (descrever abaixo)
-
-**Alterações do grupo:** _(preencher)_
