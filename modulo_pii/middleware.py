@@ -10,9 +10,16 @@ from .auditoria import registrar_auditoria
 from .detector import detectar_pii
 
 
+ROTAS_DOCUMENTACAO = {"/docs", "/redoc", "/openapi.json", "/docs/oauth2-redirect"}
+
+
 class TaintMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
         resp = await call_next(request)
+        # A documentação gerada pelo FastAPI descreve os campos (ex.: "cadeirante") e não carrega
+        # dado de cidadão: inspecioná-la gera falso positivo e quebra o Swagger.
+        if request.url.path in ROTAS_DOCUMENTACAO:
+            return resp
         if "application/json" not in resp.headers.get("content-type", ""):
             return resp
         corpo = b"".join([chunk async for chunk in resp.body_iterator])
